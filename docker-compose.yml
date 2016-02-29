@@ -1,0 +1,41 @@
+http-www.radare.org:
+  container_name: http-www.radare.org
+  build: ./http-www.radare.org
+  ports:
+    - "80:80"
+  restart: always
+
+# http-cloud.radare.org:
+#   container_name: http-cloud.radare.org
+#   build: ./http-cloud.radare.org
+#   ports:
+#     - "82:80"
+#   restart: always
+
+http-cydia.radare.org:
+  container_name: http-cydia.radare.org
+  build: ./http-cydia.radare.org
+  ports:
+    - "81:80"
+  restart: always
+
+http-pad.nopcode.org:
+  container_name: http-pad.nopcode.org
+  build: ./http-pad.nopcode.org
+  ports:
+    - "9001:9001"
+  restart: always
+
+ssh-radare.org:
+  container_name: ssh-radare.org
+  build: ./ssh-radare.org
+  ports:
+    - "2222:22"
+
+r2-tgbot:
+  container_name: telegram-r2-bot
+  build: ./telegram-r2-bot
+
+r2-tgircbot:
+  container_name: telegram-r2irc-bot
+  build: ./telegram-r2irc-bot

@@ -1,0 +1,250 @@
+<html>
+<head>
+<title>iOS privacy hardening</title>
+<meta name="viewport" content="width=320, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=false" />
+<style>
+div,body,h1,h2,a,img {
+	font-family: Verdana, Sans-Serif, Arial;
+	vertical-align: top;
+	border:0px;
+	padding:0px;
+	spacing:0px;
+	text-decoration:none;
+}
+pre {
+	border: 1px solid;
+	border-color:#909090;
+	background-color:#e0e0e0;
+}
+</style>
+</head>
+<body>
+<center>
+<div style="text-align:left;width:300px;background-color:#ffffff">
+<table>
+<tr><td width=64>
+<a href="../"><img border=0 src=../CydiaIcon.png /></a>
+</td>
+<td>
+<center>
+<h1><font family=Verdana>
+iOS privacy hardening</h1></center>
+</td></tr></table>
+<div style="text-align:justify">
+<hr size=1 width="100%" />
+<br />
+This text aims to provide a comprehensive guide for keeping your privacy a little safer than using the defaults from the system.
+<br /><br />
+Privacy is trending topic nowadays and I will try to collect different aspects of them applied to an iOS device.
+<br /><br />
+<h3>Fraud Warning</h3>
+This option must be disabled. It's probably the main data leak you may find on the pocket device.
+<br /><br />
+Cloudfare will log all your http requests (not the https ones). If you know which links you tap you'll be as safe as any other iOS device :)
+<h3>Exploits</h3>
+iOS exploits are some of the most well payed and governments are highly interested on them. Thanks to the jailbreak community we can get full access to our iOS device, but we are also exposed to other vulnerabilities that cannot be fixed in order to get your device secure.
+<br /><br />
+<h3>AdBlock</h3>
+Blocking ads is not just a matter of avoiding unwanted advertisements. It's also a matter of reducing network traffic and escape from the Google, Facebook, Twitter and other sites from tracking you. It doesnt matters if you are logged or not. They track you.
+<br /><br />
+Blocking visit tracking URL services is also useful. Google Analytics is another source of information for tracking your browsing.
+<h3>Firewall</h3>
+There's an app in cydia called 'IP Firewall'. It's a great MobileSubstrate hack that allows you to define runtime firewall hostname masking rules for every application.
+<br /><br />
+The main problem I find is that a lot of applications embed a web browser, and you end up disabling the network blocks for the whole application.. because it's a tedious task to get a saner blacklist for all browser instances.
+<h3>WebStorage</h3>
+HTML5 is probably one of the most dangerous standards out there. WebStorage is the way html5 provides a database access to the web pages at client side. This is cool, and theorically secure. But it's a privacy problem because it cannot be removed. Any website can store a cookie there and track your browsing.
+<br /><br />
+Enable "Private Browsing" in settings to disable the browser to store any login information, cookies, ..
+<i>TODO: audit</i>
+<h3>HTTPS</h3>
+The https protocol opens an secure connection between you and the end point. Mobile Safari doesn't provides a way to manage the valid certificates, if any malicious certificate gets installed on your device you can be victim of MiM attacks.
+<br /><br />
+See SSL for more on this topic.
+<h3>SSL</h3>
+Certificates are an important security key point of the security in Internet. Your device trust some providers. If someone has access to one of those SSL certifier service he will be able to get the private key and do a seamless MiM.
+<br /><br />
+<i>TODO: how to manage ssl providers?</i>
+<h3>Social Networks</h3>
+It doesn't matters which privacy settings you put in your g+/fb/tw account. Governments will keep having access to them. Use the social networks thinking like all you write there will be read by everyone.
+<h3>Phisical access</h3>
+If someone gets physical access to your iOS device you are exposed. All current devices can be exploited by redsn0w, by just uploading a custom ramdisk can get access to the full device and get dumps of the nand to retrieve even the stuff you removed.
+<h3>PIN</h3>
+The device lock PIN is IMHO an usability inconvenience because you spend more time to unlock the device than just a swipe. But if someone have physical access to your device can easily crack this code in &lt;20m of local bruteforcing. This bruteforcing can only be performed on the device because it uses the internal criptography hardware to check if it's valid or not.
+<br /><br />
+Using alphanumeric passwords can result in better security, but worst usability. It's better to protect the physical access. Never allow anyone to have access to your device.
+<br /><br />
+As long as you will have to type this password many times every day, the possibilities that someone else can lurk it are high, so this lock method is not as secure as it should be.
+<br /><br />
+A specially crafted ramdisk launched with redsn0w can be used to crack your device unlock PIN.
+<h3>iMessage</h3>
+iMessage is a native iOS messaging system linked to the AppleID that uses the Apple Push notification system which is at the same time based on XMPP. Bear in mind that all your messages will pass along 3rd party servers.
+<h3>AddressBook</h3>
+As long as the address book and the photo roll are accessible by all applications (there's no way to block access to them with signatures). Are data succeptible to be retrieved by 3rd party apps.
+<br /><br />
+Apple theorically control applications accessing this data and they force developers to add a popup warning about this before doing any action. But this was done a bit late and Twitter, Instagram, Whatsapp own all your contacts information.
+<h3>Keychain</h3>
+All sensible private data like wlan or email passwords are stored on a protected file named "Keychain". Each application needs to be signed to have access to a part of the keychain (to read and store the passwords), but 
+<br /><br />
+In this (cydia.radare.org) repository there's a package named "keychaindumper" that will dump all this information. If you just want to recover WLAN passwords install a program named "wifipass" from Cydia.
+<h3>iCloud</h3>
+If you enable iCloud many personal data will be uploaded to the Apple iCloud (which are microsoft servers), so at least two companies and a single government will have access to it.
+it's easy to setup new iOS devices with iCloud by copying previous backups, but you should know which data is copied and which access do c
+<br /><br />
+Disable all mail sync. Disabling Photo Stream just cancels the inter-device photo syncronization, but photo roll will keep copying your personal pictures to the iCloud. (!!!) You should disable this option by going to the current device backup and disable the PhotoRoll switch. You will need to do an initial backup in order to configure this. It's a trap!
+<br /><br />
+I'm still wondering if Apple can use iCloud as a backdoor to access personal data like ignoring certain sync options and be able to get a copy of your mail (for example).
+<br /><br />
+External apps like Sparrow will store not only the configuration (passwords..) on the iCloud. but also the content of the emails!
+<br /><br />
+Storing passwords on the cloud can be useful to setup new devices, but it's dangerous as long as your passwords are stored on servers you don't control.
+<h3>GSM</h3>
+I don't recognize GSM as a secure network, but at least more safe than many WLANs. Bear in mind that with $3K hardware it's possible to create a fake GSM accesspoint and sniff or do man in the middle on all your network traffic.
+<br /><br />
+SMS and phone calls are being monitored, and all your movements (based on join/departure of GSM cells) is logged and used by governments and private companies (signing NDAs) to have access to those logs.
+<br /><br />
+Depending on the country laws the ISP will log your communications, at the moment few countries will do deep packet inspection, so they will log statistical information (icmp, http, irc, mail, ..) and store a log of the IPs used by every device connected to their networks.
+<h3>Forensics</h3>
+HFS+ is a fast unix filesystem, but it stores a lot of metadata and makes lot of copies of the same content along the disk. This means that it's easy to recover deleted data.
+<br /><br />
+The way to be a little safer is to always 'recover' the firmware from scratch (never update), to get a clean device update.
+<br /><br />
+You can wipe the unused disk by filling a file with zeroes...
+<pre> dd if=/dev/zero of=dump ; rm dump</pre>
+If you want to remove a file in a secure way from commandline. Use the 'shred' command.
+<i>TODO: wipe runtime lib</i>
+<h3>Passwords</h3>
+All your passwords (mail, wifi, ..) can be extracted with keychaintool. If someone have access to your device, all this data can be extracted.
+<br />
+<i>TODO: implement a gpg cipherer for the keychain</i>
+<br /><br />
+If you use multiple web services. Use a random password for each one and put fake data in the user profile and false recovery questions.
+<br /><br />
+You can use this web application to generate passwords based on a cipher configuration and a password. This way you have a mnemonic way to work with passwords.
+<br /><br />
+<a href="http://radare.org/x">http://radare.org/x/</a>
+<h3>Email providers</h3>
+Lot of people use public email providers like gmail, hotmail, ... any gov can access your mails. Even know which mail addresses you open from the same IP. This information plus the geolocation reported by the IP address (or metadata of pictures you publish) can expose your presence on the network.
+<h3>e-mail</h3>
+The stock mail client is based on Webkit, any exploit for mobilesafari can be exploited too by receiving a mail.<br /><br />
+Bear in mind that an html email can reference images from 3rd party sites. This url can be crafted in javascript and use this as a trampoline to track the user when he receives the email.
+<br /><br />
+The way to secure your email client from this kind of attacks is by using the 'IP firewall' application and block all connections but the mail server ones.
+<h3>Gpg</h3>
+There's no userfriendly support to use heavy cryptography for messages like GPG, OTR or so. You will have to use the commandline.
+<i>TODO: someone implement it?</i>
+<h3>Wireless</h3>
+Wireless networks are used to locate you, the Apple devices scan for networks even if screen on standby (OSX too). It's better to switch off the wireless when you don't use it.
+<br /><br />
+If you connect to wifis on public places (bars, restaurants, hotels..) the connection will be probably in plain (no security) or WEP (ciphered, but insecure). your device will try to connect to the accesspoint.
+<br /><br />
+This can be a security issue, because it is possible to launch a captive portal page by just spoofing the DNS. If your MobileSafari is vulnerable you are probably fucked up.
+<br /><br />
+IMHO a proper setup for public networks would be to use WPA2 with easy password rules like PASS=ESSID. This way each client uses a private encryption channel.
+<br /><br />
+If you don't want to allow iOS to launch the 
+
+<h3>iTunes Sync</h3>
+If you plug your iPhone to a computer running iTunes (or any other free alternative) that is configured to sync your device. All your photos will be opened on the computer. Same with contacts, mails, etc..
+<br /><br />
+To kill the service that exposes all your data type this:
+<pre> cd /usr/libexec
+ mv afcd afcd.disabled
+ killall afcd
+</pre>
+
+<h3>SSH</h3>
+A good ssh client is 'prompt'. If you want a local terminal you can use 'mobileterminal' from the cydia.radare.org repo.
+<br /><br />
+Always check the ssh keys if your connection is hijacked the ssh key can be different from the original one.
+<br /><br />
+You create tunnels and a socks proxy with ssh (TODO: extend)
+<br /><br />
+The first thing you should do after installing the openssh server is to change the passwords of the 'mobile' and 'root' users.
+<pre> passwd root
+ passwd mobile</pre>
+
+<h3>CarrierIQ</h3>
+Yep. This is the official trojan that comes with all iOS devices.. and some Android ones. It tracks your device usage and sends the information to a 3rd party company.
+<br /><br />
+You can remove it by typing this:
+<pre> cd /usr/bin 
+ mv awd_ice3 awd_ice3.trojan</pre>
+
+<h3>User Agent</h3>
+It is possible to change the MobileSafari User Agent with UAFaker app (cydia). It's recommended to use a string similar to your device, but providing invalid version numbers, so if any site tries to check your user-agent to choose which exploit launch it will fail.
+<pre>Mozilla/5.0 (iPhone; CPU iPhone OS 5_1
+  like Mac OS X) AppleWebKit/534.46
+  (KHTML, like Gecko) Version/5.1
+  Mobile/9B176 Safari/7534.48.3</pre>
+<h3>Search Engine</h3>
+The default search engine is Google... In fact It doesn't matters which one you choose: Yahoo and Bing also support realtime search suggestions. This means that anyone sniffing the traffic will know which stuff you are going to search, event the corrections.
+<br /><br />
+A safest solution is to use DuckDuckGo. It supports HTTPS and search suggestions have been disabled. I wrote a script to enable and disable the duckduckgo option in the search engine preferences panel.
+<br /><br />
+You can find the script here:
+<pre> http://hg.youterm.com/toys/raw-file/tip/iobs/ddgios.sh</pre>
+And the cydia package:
+<pre> apt-get install ddgios</pre>
+<h3>Tor</h3>
+The TOR network is an onion meshed peer-to-peer virtual network.
+<br /><br />
+Many users think that they are safe if they surf the Internets using Tor. But this is a false feeling of security.<br /><br />
+Tor is secure inside tor. When you are reaching servers from outside the network your traffic is going thru the Tor relay end-points. Many of them can probably be honeypots. This means that it's ok if you browse, but do not login into any service, use different user agent, etc..
+<br /><br />
+To use the onion domains you will have to change your DNS settings to point to the localhost Tor DNS server as primary resolver and the one of your choose as secondary.
+<br /><br />
+Beware to not open any onion url without the proper DNS configuration. else you'll be leaking your Tor browsing to the public.
+<br /><br />
+Not all applications can work with the Tor socks proxy. Use torify from commandline or setup a PAC file to configure the browser to use a specific socks proxy.
+<br /><br />
+Beware which PAC files you accept ;)
+<br /><br />
+If you want to know more about how to setup Tor on iOS <a href="http://radare.org/cgi-bin/wk/TOR">read this</a>
+<br /><br />
+You can find a sbsettings-enabled version in the <a href="http://www.ilove-apple.com">ilove.apple</a> site
+<h3>VPN</h3>
+TODO: use opnevpn or ssh -L/-D
+<h3>Camera</h3>
+There's no way to know if the camera of your iPhone is recording or not, same for the microphone, there's no physical led that can warn the user.
+<br /><br />
+All the pictures you do with your phone 
+<br /><br />
+If you don't use the cameras, just cover them with duck tape.
+<h3>Location</h3>
+Maps application and other services like geolocated notifications, webpages and social networks use the location to know where you are.
+</br ><br />
+Disable all location services you are not interesed on.
+</br ><br />
+Bear in mind that iOS stores a location cache in order to accelerate the localization when no networking is available. But this is not enought, as long as it's a database that grows along time and it was stored in the iTunes backup (i think that now has been removed). All those queries will go to Google.
+</br ><br />
+Some time ago it was published that Apple stores a database of the last N positions. This is useful because it allows the system to locate you faster. But this database can be dangerous for your privacy. Purge it peridically.
+</br ><br />
+http://petewarden.github.com/iPhoneTracker/
+</br ><br />
+By analyzing the location information Google can guess your home, your work place, the shops you go, travels you do, etc.. (see Google Latitude)
+<h3>Push notifications</h3>
+All notifications on iOS go thru the Apple servers, so it's centralized. Enabling notifications can permit Apple to read part of your emails, tweets, etc..
+<h3>DNS</h3>
+Lot of people use the Google DNS service. All your name resolutions will go thru the network and can be logged and manipulated by 3rd parties. Google can track you too in this way.
+<i>TODO: setup local bind</i>
+<h3>Autocompletion</h3>
+If you have autocompletion enabled in your keyboard settings bear in mind that all the words the device learns will be stored. This is sometimes enought to identify which kind of user you are, which words you use, language, expressions, etc..
+<br /><br />
+Under some situations this database can be filled by passwords, IP addresses or hostnames. Beware :)
+<br /><br />
+The path of this database is: /var/mobile/Library/Keyboard/${lang}_${country}-dynamic-text.dat
+<br /><br />
+The generic database is in: /var/mobile/Library/Keyboard/dynamic-text.dat
+
+<pre></pre>
+<h3>TL;DR;</h3>
+We are all doomed
+<br /><br />
+<br /><br />
+--pancake
+</div>
+</div>
+</center>
+</body>
+</html>

@@ -1,0 +1,15 @@
+{ 
+	"name": "cydia.radare.org",
+	"version": "0.0.1",
+	"dependencies": {
+		"express": "*"
+	},
+	"optionalDependencies": {
+		"jscs": "*",
+		"js-beautify": "*"
+	},
+	"scripts": {
+		"indent":"node_modules/.bin/js-beautify -s 2 -r *.js",
+		"verify":"node_modules/.bin/jscs -x -r inline *.js"
+	}
+}

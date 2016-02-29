@@ -1,0 +1,54 @@
+<html>
+<head>
+<title>r2cloud beta</title>
+  <link rel="stylesheet" type="text/css" href="../style.css">
+<meta name="viewport" content="width=320, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=false" />
+</head>
+<body>
+<center>
+<div class="body">
+<center>
+<a href="/m/">
+<img border=0 width=384 height=210 src=../rcloud.png>
+</a>
+<h2>cloud.rada.re</h2>
+</center>
+<p>
+This is the main site of the work-in-progress radare2 cloud.
+<br />
+<br />
+You can publish an r2 session in this site, make it private, define a password, associate a pad and share it!
+<br />
+</p>
+<br />
+
+<center>
+<a id="start" target=_blank href="/m/">
+<div class="button"> start demo </div>
+</a>
+<br />
+</center>
+
+<p style="text-align:right">
+<br />
+
+Bug reports and ideas are welcome :)
+<br /><br />
+Contact: <a href="http://twitter.com/trufae">pancake@</a><a href="http://www.radare.org/">radare.org</a>
+</p>
+<br /><br />
+<br />
+</div>
+<script>
+function isDesktopBrowser() {
+ var ismobile=navigator.userAgent.match(/(iPad)|(iPhone)|(iPod)|(android)|(webOS)/i);
+return !ismobile;
+}
+if (!isDesktopBrowser ()) {
+	var b = document.getElementById ('start');
+	b.href = "/enyo/";
+}
+</script>
+</center>
+</body>
+</html>
