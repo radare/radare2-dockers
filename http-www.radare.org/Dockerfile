@@ -10,5 +10,9 @@ RUN echo 'daemon off;' >> /etc/nginx/nginx.conf
 
 WORKDIR "/www"
 
+# CMD ["nginx", "-g", "daemon off;"]
+
+RUN mkdir -p /run/nginx/
+
 ENTRYPOINT nginx
 # ADD public-html /usr/local/apache2/htdocs/
