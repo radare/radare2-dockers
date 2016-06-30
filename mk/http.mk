@@ -29,8 +29,9 @@ $(FIX):
 endif
 
 ifneq ($(HAVE_RUN),1)
+HTTPROOT?=/var/lib/nginx/html/
 run:
-	docker run --sig-proxy=false -p :$(IPORT):$(OPORT) -v $(PWD)/www:/usr/share/nginx/html $(NAME)
+	docker run --sig-proxy=false -p :$(IPORT):$(OPORT) -v $(PWD)/www:$(HTTPROOT) $(NAME)
 endif
 
 .PHONY: all run $(FIX)
