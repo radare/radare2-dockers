@@ -2,7 +2,10 @@ all:
 	docker build -t $(NAME) .
 
 run:
-	docker run --privileged -p 8443:443 -ti $(NAME)
+	docker run --privileged -p $(PORT):$(PORT) -ti $(NAME)
+
+bg:
+	docker run --privileged -p $(PORT):$(PORT) -d $(NAME)
 
 sh shell:
 	docker run --privileged --entrypoint /bin/sh -ti $(NAME)
