@@ -1,11 +1,12 @@
 {
   "name": "r2cloud",
   "description": "r2cloud app",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "private": true,
   "dependencies": {
     "express": "3.x",
     "websocket": "1.0.8",
-    "http-proxy": "0.10.2"
+    "http-proxy": "0.10.2",
+    "serve-index": "1.8.0"
   }
 }

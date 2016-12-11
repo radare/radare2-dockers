@@ -4,13 +4,13 @@
 const JS = JSON.stringify;
 const JP = JSON.parse;
 var config = require ('./config');
+var serveIndex = require('serve-index')
 var proxyhost = '127.0.0.1'
 var proxyport = 8080;
 var httpport = config.port;
 var logdir = "/opt/sandbox/";
 httpport = 80;
 
-econsole.log("FUCK");
 var httpProxy = require ('http-proxy');
 var express = require ('express');
 var fs = require ("fs");
@@ -38,33 +38,29 @@ app.configure (function() {
 		}
 	}
 
-	(function () {
-/*
-		app.use (error({
-			showMessage: false,
-			showStack: false,
-			dumpExceptions: false,
-			logErrors: false,
-			logErrorsStream: false
-		}));
-*/
-		for (var i in arguments) {
-			app.all (arguments[i]+"/*", function(req,res) {
-				log ("access", req);
-				proxy.proxyRequest (req, res, {
-					host: proxyhost,
-					port: proxyport
-				});
-			});
-			app.all (arguments[i], function(req,res) {
-				req.path += "/";
-				proxy.proxyRequest (req, res, {
-					host:'127.0.0.1',
-					port: 8080
-				});
-			});
-		}
-	}) ("/t", "/old", "/d3", "/cmd");
+        ["/t", "/old", "/d3", "/cmd"].forEach((dir) => {
+                app.all (dir+"/*", function(req, res) {
+                        log ("access", req);
+                        req.on('end', function() {
+                                log('access-done', req);
+                        });
+                        proxy.proxyRequest (req, res, {
+                                host: proxyhost,
+                                port: proxyport
+                        });
+                });
+                app.all (dir, function(req, res) {
+                        req.path += "/";
+                        req.on('end', function() {
+                                log('access-done', req);
+                        });
+                        proxy.proxyRequest (req, res, {
+                                host:'127.0.0.1',
+                                port: 8080
+                        });
+                });
+        });
+        app.use('/get', serveIndex('www/get', {'icons': true}))
 
 // enyo and p are symlinked from /www
 	console.log (express.static(__dirname + '/www'));
