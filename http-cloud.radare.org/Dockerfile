@@ -15,7 +15,7 @@ ADD www /www
 RUN type setcap
 
 RUN rm -rf /www/enyo /www/p /www/m /www/t && \
-    cd radare2/shlr/www && cp -rf enyo m p t /www/
+    cd radare2/shlr/www && cp -rf enyo m t /www/
 
 EXPOSE 80
 ENTRYPOINT bash -c "make -C /src SUDO="
